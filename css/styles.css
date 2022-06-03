@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#wrapper {
+  font-family: sans-serif;
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  height: 100vh;
+}
+#titulo {
+  text-align: center;
+  font-weight: 300;
+  font-size: 5rem;
+  color: white;
+  padding: 20px 0px 20px 0px;
+  background-color: #ff3cac;
+  background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
+
+  box-shadow: 0px 0px 10px 0px black;
+}
+
+#contenedorMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 7%;
+}
+#contenedorTituloCategorias h2 {
+  font-weight: 300;
+  border-bottom: 1px solid lightgray;
+  text-align: center;
+  padding: 30px 0px 30px;
+}
+
+#seccionCategorias {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0px 0px 40px 0px rgb(0, 0, 0);
+  padding: 20px;
+}
+#contenedorArticulosCategorias {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 40px 0px 40px 0px;
+  gap: 20px;
+}
+
+#contenedorArticulosCategorias article {
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0px 0px 10px rgb(203, 203, 203);
+  border-radius: 15px;
+}
+
+#contenedorArticulosCategorias article button {
+  width: 100%;
+  padding: 10px;
+  min-height: 400px;
+  font-size: 2.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+#contenedorArticulosCategorias article:hover {
+  box-shadow: 0px 0px 20px rgb(0, 0, 0);
+}
+
+#botonCategoriaInformatica {
+  background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+}
+#botonCategoriaCine {
+  background-image: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
+}
+
+#botonCategoriaMusica {
+  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+}
+
+#botonCategoriaAleatoria {
+  background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+}
+#intermediarioSeleccionCategoria {
+  margin-top: 100px;
+  background-color: white;
+  width: 90%;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  box-shadow: 0px 0px 50px 0px rgb(121, 121, 121);
+}
+
+#intermediarioSeleccionCategoria p {
+  color: #2b86c5;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 200;
+  margin-top: 20px;
+}
+#intermediarioSeleccionCategoria button {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 200;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #bbbbbb 0%, #ffffff 100%);
+  max-width: 500px;
+  min-width: 200px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 0, 0);
+}
+#intermediarioSeleccionCategoria button:hover {
+  box-shadow: 0px 0px 10px 0px rgb(106, 106, 106);
+  border: 1px solid white;
+}
+#intermediarioSeleccionCategoria button:last-child {
+  padding: 7px;
+}
+
+#contadorPreguntas {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+  background-color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  justify-content: space-evenly;
+  border-radius: 20px;
+}
+#contadorPreguntas p {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(240, 240, 240);
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+}
+.opcionRespuestas {
+  background-color: rgb(237, 237, 237);
+  padding: 10px;
+  margin: 20px;
+  font-size: 1.2rem;
+  border: none;
+}
+#seccionPreguntas {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: center;
+  margin-bottom: 100px;
+  align-items: center;
+}
+#contenedorRespuestas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  font-size: 1.5rem;
+  padding-top: 30px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#contenedorRespuestas p {
+  color: #0026ff;
+  font-weight: 100;
+  padding: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 50px;
+}
+#contenedorRespuestas button {
+  background-color: rgb(241, 241, 241);
+  border-radius: 10px;
+  max-width: 350px;
+  min-width: 250px;
+}
+#contenedorRespuestas button:hover {
+  box-shadow: 0px 0px 5px 0px gray;
+  cursor: pointer;
+}
+.claseAcertado {
+  box-shadow: 0px 0px 10px 0px green;
+}
+.claseFallado {
+  box-shadow: 0px 0px 10px 0px red;
+}
+#contenedorResultado {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 50px;
+  padding: 20px;
+  font-size: 3rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 100;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+#logoHome {
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10%;
+  box-shadow: 0px 0px 10px lightgray;
+  cursor: pointer;
+}
