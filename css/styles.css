@@ -3,28 +3,52 @@
   padding: 0;
 }
 #wrapper {
-  font-family: sans-serif;
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-  height: 100vh;
+  font-family: sans-serif;
 }
 #titulo {
-  text-align: center;
-  font-weight: 300;
-  font-size: 5rem;
-  color: white;
-  padding: 20px 0px 20px 0px;
   background-color: #ff3cac;
   background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
-
   box-shadow: 0px 0px 10px 0px black;
+  color: white;
+  font-size: 5rem;
+  font-weight: 300;
+  padding: 20px 0px 20px 0px;
+  text-align: center;
 }
-
+#opcionesLocalStorage {
+  width: 100%;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#opcionesLocalStorage button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 7%;
+  margin-top: 0px;
+  padding: 5px 0px 5px;
+  width: 50%;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+#opcionesLocalStorage img {
+  width: 25px;
+}
+#opcionesLocalStorage button:hover {
+  background-color: rgb(235, 235, 235);
+}
 #contenedorMain {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 7%;
+  padding-bottom: 100px;
 }
 #contenedorTituloCategorias h2 {
   font-weight: 300;
@@ -34,30 +58,30 @@
 }
 
 #seccionCategorias {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0px 0px 40px 0px rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
   padding: 20px;
+  width: 90%;
 }
 #contenedorArticulosCategorias {
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 40px 0px 40px 0px;
   gap: 20px;
+  justify-content: space-evenly;
+  margin: 40px 0px 40px 0px;
+  width: 100%;
 }
 
 #contenedorArticulosCategorias article {
-  min-width: 150px;
-  max-width: 300px;
-  width: 100%;
-  box-shadow: 0px 0px 10px rgb(203, 203, 203);
   border-radius: 15px;
+  box-shadow: 0px 0px 10px rgb(203, 203, 203);
+  max-width: 300px;
+  min-width: 150px;
+  width: 100%;
 }
 
 #contenedorArticulosCategorias article button {
@@ -88,112 +112,112 @@
   background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
 }
 #intermediarioSeleccionCategoria {
-  margin-top: 100px;
+  align-items: center;
   background-color: white;
-  width: 90%;
   border-radius: 10px;
-  padding: 15px;
+  box-shadow: 0px 0px 50px 0px rgb(121, 121, 121);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 50px;
-  box-shadow: 0px 0px 50px 0px rgb(121, 121, 121);
+  margin-top: 100px;
+  padding: 15px;
+  width: 90%;
 }
 
 #intermediarioSeleccionCategoria p {
   color: #2b86c5;
   font-size: 1.5rem;
-  text-align: center;
   font-weight: 200;
   margin-top: 20px;
+  text-align: center;
 }
 #intermediarioSeleccionCategoria button {
-  font-size: 1.3rem;
-  text-align: center;
-  font-weight: 200;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: none;
   background-color: #0093e9;
   background-image: linear-gradient(160deg, #bbbbbb 0%, #ffffff 100%);
-  max-width: 500px;
-  min-width: 200px;
-  cursor: pointer;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0);
   border-radius: 10px;
   border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 200;
+  margin-bottom: 20px;
+  max-width: 500px;
+  min-width: 200px;
+  padding: 20px;
+  text-align: center;
 }
 #intermediarioSeleccionCategoria button:hover {
-  box-shadow: 0px 0px 10px 0px rgb(106, 106, 106);
   border: 1px solid white;
+  box-shadow: 0px 0px 10px 0px rgb(106, 106, 106);
 }
 #intermediarioSeleccionCategoria button:last-child {
   padding: 7px;
 }
 
 #contadorPreguntas {
-  justify-content: center;
+  background-color: white;
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
+  justify-content: space-evenly;
+  padding-bottom: 15px;
+  padding-top: 15px;
   padding: 20px;
   width: 90%;
-  background-color: white;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  justify-content: space-evenly;
-  border-radius: 20px;
 }
 #contadorPreguntas p {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   align-items: center;
-  padding: 5px;
   background-color: rgb(240, 240, 240);
-  width: 30px;
-  height: 30px;
   border-radius: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 30px;
+  justify-content: center;
+  padding: 5px;
+  width: 30px;
 }
 .opcionRespuestas {
   background-color: rgb(237, 237, 237);
-  padding: 10px;
-  margin: 20px;
-  font-size: 1.2rem;
   border: none;
+  font-size: 1.2rem;
+  margin: 20px;
+  padding: 10px;
 }
 #seccionPreguntas {
-  padding: 20px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  width: 90%;
   justify-content: center;
   margin-bottom: 100px;
-  align-items: center;
+  padding: 20px;
+  width: 90%;
 }
 #contenedorRespuestas {
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 10px;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
   font-size: 1.5rem;
+  justify-content: center;
+  margin-top: 10px;
   padding-top: 30px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 #contenedorRespuestas p {
+  border-bottom: 1px solid lightgray;
   color: #0026ff;
   font-weight: 100;
-  padding: 20px;
-  padding-bottom: 20px;
-  width: 100%;
-  border-bottom: 1px solid lightgray;
   margin-bottom: 50px;
+  padding-bottom: 20px;
+  padding: 20px;
+  width: 100%;
 }
 #contenedorRespuestas button {
   background-color: rgb(241, 241, 241);
@@ -212,26 +236,95 @@
   box-shadow: 0px 0px 10px 0px red;
 }
 #contenedorResultado {
+  align-items: center;
   background-color: white;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: 90%;
+  font-size: 3rem;
+  font-weight: 100;
+  gap: 30px;
+  justify-content: center;
   margin-top: 50px;
   padding: 20px;
-  font-size: 3rem;
   text-align: center;
-  border-radius: 10px;
-  font-weight: 100;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
+  width: 90%;
 }
 
 #logoHome {
-  padding: 10px;
-  width: 50px;
-  height: 50px;
   border-radius: 10%;
   box-shadow: 0px 0px 10px lightgray;
+  cursor: pointer;
+  height: 50px;
+  padding: 10px;
+  width: 50px;
+}
+
+#contenedorSesionesAnteriores {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+  background-color: rgb(249, 249, 249);
+  align-items: center;
+  max-width: 700px;
+  width: 90%;
+  font-size: 1.3rem;
+  margin: 40px 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 5px rgb(190, 54, 54);
+}
+
+#contenedorSesionesAnteriores h2 {
+  color: #0093e9;
+  font-weight: 400;
+  padding-bottom: 10px;
+  width: 90%;
+}
+#contenedorSesionesAnteriores > div {
+  align-items: center;
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  padding: 5px 5px;
+  justify-content: space-around;
+  gap: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#contenedorSesionesAnteriores > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 33%;
+}
+
+#contenedorSesionesAnteriores div img {
+  width: 25px;
+}
+#titulosCategorias {
+  border-bottom: 1px solid lightgray;
+  font-weight: 100;
+}
+#contenedorFecha {
+  font-weight: 100;
+}
+#botonSalirLocalStorage {
+  display: flex;
+  border: none;
+  background-color: rgb(249, 249, 249);
+  padding: 5px;
+}
+
+#pfecha {
+  font-size: 1rem;
+  padding: 2px;
+}
+
+#botonSalirLocalStorage:hover {
+  box-shadow: 0px 0px 3px 0px gray;
+  border-radius: 100%;
   cursor: pointer;
 }

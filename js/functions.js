@@ -1,9 +1,10 @@
 window.addEventListener('load', () => {
   if (!localStorage.Acertados) {
-    localStorage.setItem('Acertados', 0);
+    localStorage.Acertados = 0;
   } else {
     localStorage.Acertados = 0;
   }
+  let cat;
 
   //guardamos algunos de los elementos que usaremos de forma repetitiva
   // Seleccionamos los botones y les añadimos en addeventListener
@@ -20,7 +21,14 @@ window.addEventListener('load', () => {
     seleccionarCategoria(10);
   });
 
+  document.getElementById('botonVerHistorial').addEventListener('click', () => mostrarResultadosLocalStorage());
+  document.getElementById('botonBorrarHistorial').addEventListener('click', () => {
+    localStorage.removeItem('SesionesAnterioresPreguntas');
+    location.reload();
+  });
+
   const seleccionarCategoria = (categoria) => {
+    cat = categoria;
     let seccionCategorias = document.getElementById('seccionCategorias');
     seccionCategorias.style.display = 'none';
     mostrarIntro(categoria);
@@ -38,18 +46,22 @@ window.addEventListener('load', () => {
     if (id_categoria === 18) {
       botonEmpezar.style.backgroundImage = ' linear-gradient(to top, #9890e3 0%, #b1f4cf 100%)';
       document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(to top, #9890e3 0%, #b1f4cf 100%)';
+      document.getElementById('wrapper').style.height = '100vh';
       texto.innerHTML = 'Has elegido la categoria de Informatica! Si estas preparado para este reto dale a jugar! ';
     } else if (id_categoria === 11) {
       botonEmpezar.style.backgroundImage = 'linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%)';
       document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%)';
+      document.getElementById('wrapper').style.height = '100vh';
       texto.innerHTML = 'Has elegido la categoria de Cine! Demuestra que eres un autentico cinefilo! ';
     } else if (id_categoria === 12) {
       botonEmpezar.style.backgroundImage = 'linear-gradient(to top, #96fbc4 0%, #f9f586 100%)';
       document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(to top, #96fbc4 0%, #f9f586 100%)';
+      document.getElementById('wrapper').style.height = '100vh';
       texto.innerHTML = 'Has elegido la categoria de Musica! Mozart?...Beethoven?... o quizas Motomami??  te atreves con estas preguntas? Dale al Play! ';
     } else {
       botonEmpezar.style.backgroundImage = ' linear-gradient(180deg, #2af598 0%, #009efd 100%)';
       document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(180deg, #2af598 0%, #009efd 100%)';
+      document.getElementById('wrapper').style.height = '100vh';
       texto.innerHTML = 'Te la vas a jugar a temas aleatorios? eres todo un intrepido!';
     }
     botonEmpezar.innerHTML = 'Juega ahora!';
@@ -157,16 +169,18 @@ window.addEventListener('load', () => {
       element.addEventListener('click', () => {
         if (correcta[id] === element.value) {
           element.style.boxShadow = '0px 0px 10px 0px green';
+          document.querySelectorAll('.opcionRespuestas').forEach((boton) => (boton.disabled = true));
           setTimeout(() => {
             validarRespuesta(correcta[id], element.value, id);
             mostrarTodoPorPantalla(pregunta, respuesta, correcta, id);
-          }, 1000);
+          }, 500);
         } else {
           element.style.boxShadow = '0px 0px 10px 0px red';
+          document.querySelectorAll('.opcionRespuestas').forEach((boton) => (boton.disabled = true));
           setTimeout(() => {
             validarRespuesta(correcta[id], element.value, id);
             mostrarTodoPorPantalla(pregunta, respuesta, correcta, id);
-          }, 1000);
+          }, 500);
         }
       });
     });
@@ -174,6 +188,7 @@ window.addEventListener('load', () => {
 
   const validarRespuesta = (correcta, respuesta, id) => {
     let numeroPregunta = document.querySelectorAll('.numeroPreguntas');
+
     if (correcta === respuesta) {
       numeroPregunta[id].style.boxShadow = '0px 0px 10px 0px green';
       localStorage.Acertados++;
@@ -197,31 +212,115 @@ window.addEventListener('load', () => {
     guardarDatosLocalStorage();
   };
 
-  const mostrarResultadosGrafica = () => {};
+  const mostrarResultadosLocalStorage = () => {
+    document.getElementById('contenedorSesionesAnteriores') ? document.getElementById('contenedorSesionesAnteriores').remove() : null;
+    let datos = localStorage.getItem('SesionesAnterioresPreguntas');
+    datos = JSON.parse(datos);
+    datos.length > 5 ? (datos = datos.slice(-5)) : null;
+    const div = document.createElement('div');
+    div.id = 'contenedorSesionesAnteriores';
+    const divTitulo = document.createElement('div');
+    divTitulo.id = 'titulosCategorias';
+    const pAciertos = document.createElement('p');
+    pAciertos.innerHTML = 'Aciertos';
+    const pCategoria = document.createElement('p');
+    pCategoria.innerHTML = 'Categoria';
+    const tiempo = document.createElement('p');
+    tiempo.innerHTML = 'Fecha';
+    tiempo.title = 'Fecha y Hora';
+    divTitulo.append(pAciertos, pCategoria, tiempo);
+    datos.forEach((element) => {
+      let divEach = document.createElement('div');
+      let divAciertos = document.createElement('div');
+      let divImagen = document.createElement('div');
+      let pA = document.createElement('p');
+      pA.innerHTML = element.aciertos;
+      let pI = document.createElement('img');
+      if (element.cat === 18) {
+        pI.src = './img/info.png';
+        pI.title = 'Informatica';
+      } else if (element.cat === 11) {
+        pI.src = './img/cine.png';
+        pI.title = 'Cine';
+      } else if (element.cat === 12) {
+        pI.src = './img/musica.png';
+        pI.title = 'Musica';
+      } else {
+        pI.src = './img/random.png';
+        pI.title = 'Aleatoria';
+      }
+      let contenedorFecha = document.createElement('div');
+      contenedorFecha.id = 'contenedorFecha';
+      let fecha = document.createElement('p');
+      fecha.id = 'pfecha';
+      fecha.innerHTML = element.fecha;
+      let horas = document.createElement('p');
+      horas.innerHTML = element.horas;
+      divAciertos.appendChild(pA);
+      divImagen.appendChild(pI);
+      contenedorFecha.append(horas, fecha);
+      divEach.append(divAciertos, divImagen, contenedorFecha);
+      div.append(divEach);
+    });
+    let h2 = document.createElement('h2');
+    h2.innerHTML = 'Sesiones anteriores';
+    let contenedorTitulo = document.createElement('div');
+    let botonSalir = document.createElement('button');
+    botonSalir.id = 'botonSalirLocalStorage';
+    let imgSalir = document.createElement('img');
+    imgSalir.src = './img/salirBoton.png';
+    botonSalir.appendChild(imgSalir);
+    contenedorTitulo.append(h2, botonSalir);
+    div.append(divTitulo, contenedorTitulo);
+    var padre = document.getElementById('contenedorMain');
+    var referencia = document.getElementById('seccionCategorias');
+
+    padre.insertBefore(div, referencia);
+    guardarFecha();
+    inciarBoton();
+  };
   // Guardamos las sesiones en el local storage tras terminar la tanda de preguntas
   const guardarDatosLocalStorage = () => {
     if (localStorage.SesionesAnterioresPreguntas) {
       let local = JSON.parse(localStorage.SesionesAnterioresPreguntas);
       let aciertos = localStorage.Acertados;
-      let fecha = new Date().getTime();
+      let fecha = guardarFecha();
+      let horas = guardarHoras();
       let guardar = {
+        cat,
         aciertos,
         fecha,
+        horas,
       };
       local.push(guardar);
       let objAguardar = JSON.stringify(local);
       localStorage.setItem('SesionesAnterioresPreguntas', objAguardar);
     } else {
       let aciertos = localStorage.Acertados;
-      let fecha = new Date().getTime();
-      let guardar = [
-        {
-          aciertos,
-          fecha,
-        },
-      ];
+      let fecha = guardarFecha();
+      let horas = guardarHoras();
+      let guardar = [{ cat, aciertos, fecha, horas }];
       let objAguardar = [JSON.stringify(guardar)];
       localStorage.setItem('SesionesAnterioresPreguntas', objAguardar);
     }
+  };
+
+  const guardarFecha = () => {
+    let fecha;
+    let date = new Date();
+    fecha = `${date.getDate()} / ${date.getMonth() + 1} / ${date.getFullYear()}`;
+    return fecha;
+  };
+  const guardarHoras = () => {
+    let horas;
+    let date = new Date();
+    horas = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    return horas;
+  };
+
+  const inciarBoton = () => {
+    document.getElementById('botonSalirLocalStorage').addEventListener('click', () => {
+      document.getElementById('botonSalirLocalStorage').parentElement.parentElement.remove();
+    });
   };
 });
