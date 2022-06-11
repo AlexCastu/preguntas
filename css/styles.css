@@ -262,54 +262,90 @@
 
 #contenedorSesionesAnteriores {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   background-color: rgb(249, 249, 249);
   align-items: center;
-  max-width: 700px;
   width: 90%;
   font-size: 1.3rem;
   margin: 40px 40px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0px 0px 5px rgb(190, 54, 54);
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  justify-content: space-around;
+  padding: 20px 0px 20px;
 }
 
-#contenedorSesionesAnteriores h2 {
-  color: #0093e9;
-  font-weight: 400;
-  padding-bottom: 10px;
-  width: 90%;
-}
-#contenedorSesionesAnteriores > div {
-  align-items: center;
+#contenedorTitulo {
   display: flex;
-  width: 90%;
-  flex-direction: row;
-  padding: 5px 5px;
-  justify-content: space-around;
-  gap: 50px;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
   text-align: center;
-  margin-bottom: 20px;
+  justify-content: space-between;
 }
-#contenedorSesionesAnteriores > div > div {
+#contenedorTitulo h2 {
+  font-weight: 100;
+}
+
+#contenedorSesiones {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  width: 90%;
+  max-width: 600px;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+  box-shadow: 0px 0px 10px 2px lightgray;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  width: 33%;
 }
 
-#contenedorSesionesAnteriores div img {
-  width: 25px;
-}
 #titulosCategorias {
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-around;
   font-weight: 100;
+  padding: 10px 0px 10px;
+  width: 90%;
+  align-items: center;
 }
+.sesiones {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  box-shadow: 0px 0px 5px 0px lightgray;
+  width: 90%;
+  padding: 10px 0px 10px;
+}
+.sesiones div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+#contenedorGrafica {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 600px;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 2px lightgray;
+}
+#contenedorSesionesAnteriores img {
+  width: 25px;
+}
+
 #contenedorFecha {
   font-weight: 100;
+  display: flex;
+  flex-direction: column;
 }
 #botonSalirLocalStorage {
   display: flex;

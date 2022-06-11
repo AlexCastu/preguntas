@@ -11,17 +11,21 @@ window.addEventListener('load', () => {
   document.getElementById('botonCategoriaInformatica').addEventListener('click', () => {
     seleccionarCategoria(18);
   });
+
   document.getElementById('botonCategoriaCine').addEventListener('click', () => {
     seleccionarCategoria(11);
   });
+
   document.getElementById('botonCategoriaMusica').addEventListener('click', () => {
     seleccionarCategoria(12);
   });
+
   document.getElementById('botonCategoriaAleatoria').addEventListener('click', () => {
     seleccionarCategoria(10);
   });
 
   document.getElementById('botonVerHistorial').addEventListener('click', () => mostrarResultadosLocalStorage());
+
   document.getElementById('botonBorrarHistorial').addEventListener('click', () => {
     localStorage.removeItem('SesionesAnterioresPreguntas');
     location.reload();
@@ -165,22 +169,29 @@ window.addEventListener('load', () => {
   };
 
   const activarBoton = (pregunta, respuesta, correcta, id) => {
-    document.querySelectorAll('.opcionRespuestas').forEach((element) => {
+    let botonesOpciones = document.querySelectorAll('.opcionRespuestas');
+
+    botonesOpciones.forEach((element) => {
       element.addEventListener('click', () => {
         if (correcta[id] === element.value) {
           element.style.boxShadow = '0px 0px 10px 0px green';
-          document.querySelectorAll('.opcionRespuestas').forEach((boton) => (boton.disabled = true));
+          botonesOpciones.forEach((boton) => (boton.disabled = true));
           setTimeout(() => {
             validarRespuesta(correcta[id], element.value, id);
             mostrarTodoPorPantalla(pregunta, respuesta, correcta, id);
-          }, 500);
+          }, 1000);
         } else {
           element.style.boxShadow = '0px 0px 10px 0px red';
-          document.querySelectorAll('.opcionRespuestas').forEach((boton) => (boton.disabled = true));
+          botonesOpciones.forEach((boton) => {
+            if (boton.value === correcta[id]) {
+              boton.style.boxShadow = '0px 0px 10px 0px green';
+            }
+          });
+          botonesOpciones.forEach((boton) => (boton.disabled = true));
           setTimeout(() => {
             validarRespuesta(correcta[id], element.value, id);
             mostrarTodoPorPantalla(pregunta, respuesta, correcta, id);
-          }, 500);
+          }, 1000);
         }
       });
     });
@@ -205,7 +216,7 @@ window.addEventListener('load', () => {
     img.id = 'logoHome';
     let p = document.createElement('p');
     p.innerHTML =
-      localStorage.Acertados > 5 ? `Has respondido ${localStorage.Acertados} bien, Felicidades!` : `Has respondido solo ${localStorage.Acertados} preguntas bien , tienes que esforzarte un poco mas!`;
+      localStorage.Acertados >= 5 ? `Has respondido ${localStorage.Acertados} bien, Felicidades!` : `Has respondido solo ${localStorage.Acertados} preguntas bien , tienes que esforzarte un poco mas!`;
     div.append(p, img);
     document.getElementById('contenedorMain').append(div);
     document.getElementById('logoHome').addEventListener('click', () => location.reload());
@@ -214,70 +225,93 @@ window.addEventListener('load', () => {
 
   const mostrarResultadosLocalStorage = () => {
     document.getElementById('contenedorSesionesAnteriores') ? document.getElementById('contenedorSesionesAnteriores').remove() : null;
+
+    // comporobar local Host
     let datos = localStorage.getItem('SesionesAnterioresPreguntas');
     datos = JSON.parse(datos);
-    datos.length > 5 ? (datos = datos.slice(-5)) : null;
-    const div = document.createElement('div');
-    div.id = 'contenedorSesionesAnteriores';
-    const divTitulo = document.createElement('div');
-    divTitulo.id = 'titulosCategorias';
-    const pAciertos = document.createElement('p');
-    pAciertos.innerHTML = 'Aciertos';
-    const pCategoria = document.createElement('p');
-    pCategoria.innerHTML = 'Categoria';
-    const tiempo = document.createElement('p');
-    tiempo.innerHTML = 'Fecha';
-    tiempo.title = 'Fecha y Hora';
-    divTitulo.append(pAciertos, pCategoria, tiempo);
-    datos.forEach((element) => {
-      let divEach = document.createElement('div');
-      let divAciertos = document.createElement('div');
-      let divImagen = document.createElement('div');
-      let pA = document.createElement('p');
-      pA.innerHTML = element.aciertos;
-      let pI = document.createElement('img');
-      if (element.cat === 18) {
-        pI.src = './img/info.png';
-        pI.title = 'Informatica';
-      } else if (element.cat === 11) {
-        pI.src = './img/cine.png';
-        pI.title = 'Cine';
-      } else if (element.cat === 12) {
-        pI.src = './img/musica.png';
-        pI.title = 'Musica';
-      } else {
-        pI.src = './img/random.png';
-        pI.title = 'Aleatoria';
-      }
-      let contenedorFecha = document.createElement('div');
-      contenedorFecha.id = 'contenedorFecha';
-      let fecha = document.createElement('p');
-      fecha.id = 'pfecha';
-      fecha.innerHTML = element.fecha;
-      let horas = document.createElement('p');
-      horas.innerHTML = element.horas;
-      divAciertos.appendChild(pA);
-      divImagen.appendChild(pI);
-      contenedorFecha.append(horas, fecha);
-      divEach.append(divAciertos, divImagen, contenedorFecha);
-      div.append(divEach);
-    });
-    let h2 = document.createElement('h2');
-    h2.innerHTML = 'Sesiones anteriores';
-    let contenedorTitulo = document.createElement('div');
-    let botonSalir = document.createElement('button');
-    botonSalir.id = 'botonSalirLocalStorage';
-    let imgSalir = document.createElement('img');
-    imgSalir.src = './img/salirBoton.png';
-    botonSalir.appendChild(imgSalir);
-    contenedorTitulo.append(h2, botonSalir);
-    div.append(divTitulo, contenedorTitulo);
-    var padre = document.getElementById('contenedorMain');
-    var referencia = document.getElementById('seccionCategorias');
+    if (datos) {
+      datos.length > 5 ? (datos = datos.slice(-5)) : null;
 
-    padre.insertBefore(div, referencia);
-    guardarFecha();
-    inciarBoton();
+      // div titulo y boton
+      const contenedorTitulo = document.createElement('div');
+      contenedorTitulo.id = 'contenedorTitulo';
+      let h2 = document.createElement('h2');
+      h2.innerHTML = 'Sesiones anteriores';
+      let botonSalir = document.createElement('button');
+      botonSalir.id = 'botonSalirLocalStorage';
+      let imgSalir = document.createElement('img');
+      imgSalir.src = './img/salirBoton.png';
+      botonSalir.appendChild(imgSalir);
+      contenedorTitulo.append(h2, botonSalir);
+
+      // contenedor general
+      const div = document.createElement('div');
+      div.id = 'contenedorSesionesAnteriores';
+      ////////////
+
+      // div para cada una de las sesiones
+      const divAnterioresSesiones = document.createElement('div');
+      divAnterioresSesiones.id = 'contenedorSesiones';
+      const divTitulo = document.createElement('div');
+      divTitulo.id = 'titulosCategorias';
+      const pAciertos = document.createElement('p');
+      pAciertos.innerHTML = 'Aciertos';
+      const pCategoria = document.createElement('p');
+      pCategoria.innerHTML = 'Categoria';
+      const tiempo = document.createElement('p');
+      tiempo.innerHTML = 'Fecha';
+      tiempo.title = 'Fecha y Hora';
+      divTitulo.append(pAciertos, pCategoria, tiempo);
+
+      datos.forEach((element) => {
+        let divEach = document.createElement('div');
+        divEach.className = 'sesiones';
+        let divAciertos = document.createElement('div');
+        let divImagen = document.createElement('div');
+        let pA = document.createElement('p');
+        pA.innerHTML = element.aciertos;
+        pA.style.color = element.aciertos > 4 ? 'green' : 'red';
+        let pI = document.createElement('img');
+        if (element.cat === 18) {
+          pI.src = './img/info.png';
+          pI.title = 'Informatica';
+        } else if (element.cat === 11) {
+          pI.src = './img/cine.png';
+          pI.title = 'Cine';
+        } else if (element.cat === 12) {
+          pI.src = './img/musica.png';
+          pI.title = 'Musica';
+        } else {
+          pI.src = './img/random.png';
+          pI.title = 'Aleatoria';
+        }
+        let contenedorFecha = document.createElement('div');
+        contenedorFecha.id = 'contenedorFecha';
+        let fecha = document.createElement('p');
+        fecha.id = 'pfecha';
+        fecha.innerHTML = element.fecha;
+        let horas = document.createElement('p');
+        horas.innerHTML = element.horas;
+        divAciertos.appendChild(pA);
+        divImagen.appendChild(pI);
+        contenedorFecha.append(horas, fecha);
+        divEach.append(divAciertos, divImagen, contenedorFecha);
+        divAnterioresSesiones.append(divEach);
+        divAnterioresSesiones.append(divTitulo);
+      });
+
+      div.append(contenedorTitulo);
+      div.append(divAnterioresSesiones);
+
+      var padre = document.getElementById('contenedorMain');
+      var referencia = document.getElementById('seccionCategorias');
+      padre.insertBefore(div, referencia);
+      guardarFecha();
+      inciarBoton();
+      verGrafica();
+    } else {
+      alert('No hay ninguna sesion guardada');
+    }
   };
   // Guardamos las sesiones en el local storage tras terminar la tanda de preguntas
   const guardarDatosLocalStorage = () => {
@@ -323,4 +357,70 @@ window.addEventListener('load', () => {
       document.getElementById('botonSalirLocalStorage').parentElement.parentElement.remove();
     });
   };
+
+  const verGrafica = () => {
+    const div = document.createElement('div');
+    div.id = 'contenedorGrafica';
+    const canvas = document.createElement('canvas');
+    canvas.id = 'myChart';
+    canvas.style.width = '400px';
+    div.append(canvas);
+
+    let datos = localStorage.getItem('SesionesAnterioresPreguntas');
+    datos = JSON.parse(datos);
+
+    let puntuaciones;
+    let categoria;
+    let colores;
+
+    if (datos.length > 0) {
+      puntuaciones = datos.map((element) => {
+        return element.aciertos;
+      });
+      categoria = datos.map((element) => {
+        if (element.cat === 18) {
+          return 'Informatica';
+        } else if (element.cat === 11) {
+          return 'Cine';
+        } else if (element.cat === 12) {
+          return 'Musica';
+        } else {
+          return 'Aleatoria';
+        }
+      });
+      colores = datos.map((element) => {
+        return element.aciertos >= 5 ? 'rgba(15, 148, 8) ' : 'rgba(225, 48, 48)';
+      });
+    }
+
+    const data = {
+      labels: categoria,
+      datasets: [
+        {
+          label: 'Aciertos',
+          backgroundColor: colores,
+          borderColor: 'rgb(255, 99, 132)',
+          data: puntuaciones,
+        },
+      ],
+    };
+
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        min: 0,
+        max: 10,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    };
+
+    document.getElementById('contenedorSesionesAnteriores').appendChild(div);
+    const myChart = new Chart(document.getElementById('myChart'), config);
+  };
+  ///////////////////////////////
 });
