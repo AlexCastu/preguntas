@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="./css/styles.css">
-    <script src="./js/functions.js"></script>
+    <script defer type="module" src="./js/functions.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script defer type="module" src="./js/firebase.js"></script>
 </head>
 
 <body>
@@ -57,6 +57,12 @@
                         <button id="botonCategoriaAleatoria">
                             <p>Cualquier Tema!</p>
                             <img src="./img/random.png" alt="logo aleatorio">
+                        </button>
+                    </article>
+                    <article>
+                        <button id="botonCategoriaFirebase">
+                            <p>Preguntas Desde Firebase</p>
+                            <img src="./img/firebase.png" alt="logo informatica">
                         </button>
                     </article>
                 </div>

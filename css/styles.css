@@ -5,6 +5,9 @@
 #wrapper {
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   font-family: sans-serif;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #titulo {
   background-color: #ff3cac;
@@ -79,15 +82,21 @@
 #contenedorArticulosCategorias article {
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgb(203, 203, 203);
-  max-width: 300px;
+  max-width: 250px;
   min-width: 150px;
   width: 100%;
 }
 
 #contenedorArticulosCategorias article button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   width: 100%;
+
   padding: 10px;
-  min-height: 400px;
+  min-height: 300px;
   font-size: 2.5rem;
   border: none;
   cursor: pointer;
@@ -110,6 +119,10 @@
 
 #botonCategoriaAleatoria {
   background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+}
+#botonCategoriaFirebase {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
 }
 #intermediarioSeleccionCategoria {
   align-items: center;
