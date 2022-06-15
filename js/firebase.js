@@ -16,7 +16,6 @@ const initFireBase = () => {
     storageBucket: 'preguntasquiz.appspot.com',
     messagingSenderId: '754646889454',
     appId: '1:754646889454:web:d972c1f2a948a220f594ff',
-    measurementId: 'G-P4XX8CXSM4',
   };
   return initializeApp(firebaseConfig);
 };
@@ -24,6 +23,7 @@ const initFireBase = () => {
 function getData(app) {
   const database = getDatabase(app);
   const refPreguntas = ref(database, 'results/');
+  console.log(refPreguntas);
   onValue(refPreguntas, (snapshot) => {
     const data = snapshot.val();
     mostrarPreguntasYRespuestas(data);

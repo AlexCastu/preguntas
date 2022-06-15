@@ -4,10 +4,12 @@
 }
 #wrapper {
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-  font-family: sans-serif;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: sans-serif;
+  height: 100%;
+  width: 100%;
 }
 #titulo {
   background-color: #ff3cac;
@@ -126,7 +128,7 @@
 }
 #intermediarioSeleccionCategoria {
   align-items: center;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0px 0px 50px 0px rgb(121, 121, 121);
   display: flex;
@@ -166,7 +168,31 @@
 #intermediarioSeleccionCategoria button:last-child {
   padding: 7px;
 }
-
+#contenedorFalloFetch {
+  background-color: rgb(255, 0, 0);
+  padding: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  color: white;
+  max-width: 450px;
+  text-align: center;
+}
+#contenedorFalloFetch button {
+  box-shadow: 0px 0px 5px 0px white;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  border: none;
+}
+#contenedorFalloFetch button:hover {
+  box-shadow: 0px 0px 10px 5px black;
+  cursor: pointer;
+}
 #contadorPreguntas {
   background-color: white;
   border-radius: 20px;
@@ -180,6 +206,22 @@
   padding-top: 15px;
   padding: 20px;
   width: 90%;
+}
+#anularPrueba {
+  padding: 10px;
+  border: none;
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 5px gray;
+  border-radius: 10px;
+  background-color: white;
+}
+#anularPrueba:hover {
+  box-shadow: 0px 0px 5px black;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 #contadorPreguntas p {
   align-items: center;
@@ -303,67 +345,67 @@
 }
 
 #contenedorSesiones {
+  align-items: center;
+  box-shadow: 0px 0px 10px 2px lightgray;
   display: flex;
   flex-direction: column-reverse;
-  width: 90%;
-  max-width: 600px;
-  justify-content: center;
-  padding: 10px;
   gap: 10px;
-  box-shadow: 0px 0px 10px 2px lightgray;
   justify-content: center;
-  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  padding: 10px;
+  width: 90%;
 }
 
 #titulosCategorias {
+  align-items: center;
   border-bottom: 1px solid lightgray;
   display: flex;
-  justify-content: space-around;
   font-weight: 100;
+  justify-content: space-around;
   padding: 10px 0px 10px;
   width: 90%;
-  align-items: center;
 }
 .sesiones {
+  align-items: center;
+  box-shadow: 0px 0px 5px 0px lightgray;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  align-items: center;
-  justify-content: space-evenly;
   gap: 10px;
-  box-shadow: 0px 0px 5px 0px lightgray;
-  width: 90%;
+  justify-content: space-evenly;
   padding: 10px 0px 10px;
+  width: 100%;
+  width: 90%;
 }
 .sesiones div {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   width: 100%;
 }
 #contenedorGrafica {
+  box-shadow: 0px 0px 10px 2px lightgray;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 600px;
   justify-content: center;
+  max-width: 600px;
   padding: 10px;
-  box-shadow: 0px 0px 10px 2px lightgray;
+  width: 90%;
 }
 #contenedorSesionesAnteriores img {
   width: 25px;
 }
 
 #contenedorFecha {
-  font-weight: 100;
   display: flex;
   flex-direction: column;
+  font-weight: 100;
 }
 #botonSalirLocalStorage {
-  display: flex;
-  border: none;
   background-color: rgb(249, 249, 249);
+  border: none;
+  display: flex;
   padding: 5px;
 }
 

@@ -51,30 +51,31 @@ const mostrarIntro = (id_categoria) => {
   let botonEmpezar = document.createElement('button');
   botonEmpezar.id = 'botonJugar';
   let texto = document.createElement('p');
+  let wrapper = document.getElementById('wrapper');
   if (id_categoria === 18) {
     botonEmpezar.style.backgroundImage = ' linear-gradient(to top, #9890e3 0%, #b1f4cf 100%)';
-    document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(to top, #9890e3 0%, #b1f4cf 100%)';
-    document.getElementById('wrapper').style.height = '100vh';
+    wrapper.style.backgroundImage = ' linear-gradient(to top, #9890e3 0%, #b1f4cf 100%)';
+    wrapper.style.height = '100vh';
     texto.innerHTML = 'Has elegido la categoria de Informatica! Si estas preparado para este reto dale a jugar! ';
   } else if (id_categoria === 11) {
     botonEmpezar.style.backgroundImage = 'linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%)';
-    document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%)';
-    document.getElementById('wrapper').style.height = '100vh';
+    wrapper.style.backgroundImage = ' linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%)';
+    wrapper.style.height = '100vh';
     texto.innerHTML = 'Has elegido la categoria de Cine! Demuestra que eres un autentico cinefilo! ';
   } else if (id_categoria === 12) {
     botonEmpezar.style.backgroundImage = 'linear-gradient(to top, #96fbc4 0%, #f9f586 100%)';
-    document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(to top, #96fbc4 0%, #f9f586 100%)';
-    document.getElementById('wrapper').style.height = '100vh';
+    wrapper.style.backgroundImage = ' linear-gradient(to top, #96fbc4 0%, #f9f586 100%)';
+    wrapper.style.height = '100vh';
     texto.innerHTML = 'Has elegido la categoria de Musica! Mozart?...Beethoven?... o quizas Motomami??  te atreves con estas preguntas? Dale al Play! ';
   } else if (id_categoria === 10) {
     botonEmpezar.style.backgroundImage = ' linear-gradient(180deg, #2af598 0%, #009efd 100%)';
-    document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(180deg, #2af598 0%, #009efd 100%)';
-    document.getElementById('wrapper').style.height = '100vh';
+    wrapper.style.backgroundImage = ' linear-gradient(180deg, #2af598 0%, #009efd 100%)';
+    wrapper.style.height = '100vh';
     texto.innerHTML = 'Te la vas a jugar a temas aleatorios? eres todo un intrepido!';
   } else {
     botonEmpezar.style.backgroundImage = ' linear-gradient(180deg,#FFA611 0% ,#F5820D 50%, #FFCB2B 100%)';
-    document.getElementById('wrapper').style.backgroundImage = ' linear-gradient(180deg,#FFA611 0% ,#F5820D 50%, #FFCB2B 100%)';
-    document.getElementById('wrapper').style.height = '100vh';
+    wrapper.style.backgroundImage = ' linear-gradient(180deg,#FFA611 0% ,#F5820D 50%, #FFCB2B 100%)';
+    wrapper.style.height = '100vh';
     texto.innerHTML = 'Te atreves con unas preguntas sobre el espacio?  Son preguntas elegidas desde Firebase!';
   }
 
@@ -110,8 +111,27 @@ const conseguirPreguntas = async (id) => {
     data = data.results;
     return data;
   } catch (error) {
-    console.log('Error : ' + error);
+    console.log(error);
+    enCasoDeFallarFetch();
   }
+};
+const enCasoDeFallarFetch = () => {
+  let contenedor = document.createElement('div');
+  contenedor.id = 'contenedorFalloFetch';
+  let tituloFallo = document.createElement('h1');
+  tituloFallo.innerText = 'UPS... algo ha fallado!';
+  let parrafoError = document.createElement('details');
+  let botonVolverAHome = document.createElement('button');
+  botonVolverAHome.id = 'botonVolverAHome';
+  let img = document.createElement('img');
+  img.src = './img/home.gif';
+  parrafoError.innerHTML = 'Parece que el Fetch ha fallado, porfavor vuelve a intentarlo de nuevo, dale sobre el boton que ves mas abajo y asi podras volver al inicio.';
+  botonVolverAHome.append(img);
+  contenedor.append(tituloFallo, parrafoError, botonVolverAHome);
+  document.getElementById('contenedorMain').append(contenedor);
+  document.getElementById('botonVolverAHome').addEventListener('click', () => {
+    location.reload();
+  });
 };
 
 const mostrarPreguntasYRespuestas = (preguntas) => {
@@ -161,7 +181,13 @@ const mostrarCard = (pregunta, respuesta, correcta, id) => {
   if (id < 10) {
     numeroPregunta[id].style.boxShadow = '0px 0px 10px 0px black';
     let seccion = document.createElement('section');
+    ////
+    let botonAbandonar = document.createElement('button');
+    botonAbandonar.innerText = 'Anular Sesion';
+    botonAbandonar.id = 'anularPrueba';
+    ////
     seccion.id = 'seccionPreguntas';
+    seccion.append(botonAbandonar);
     let resp = document.createElement('p');
     resp.innerHTML = pregunta[id];
     let respS = document.createElement('div');
@@ -177,6 +203,7 @@ const mostrarCard = (pregunta, respuesta, correcta, id) => {
     seccion.append(respS);
     document.getElementById('contenedorMain').append(seccion);
     activarBoton(pregunta, respuesta, correcta, id);
+    activarBotonAnularSesion();
   } else {
     mostrarResultado();
   }
@@ -209,6 +236,14 @@ const activarBoton = (pregunta, respuesta, correcta, id) => {
       }
     });
   });
+};
+
+const activarBotonAnularSesion = () => {
+  if (document.getElementById('anularPrueba')) {
+    document.getElementById('anularPrueba').addEventListener('click', () => {
+      location.reload();
+    });
+  }
 };
 
 const validarRespuesta = (correcta, respuesta, id) => {
