@@ -2,73 +2,150 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <script defer type="module" src="./js/functions.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer type="module" src="./js/firebase.js"></script>
-</head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Quiz</title>
+	<link rel="stylesheet" href="./css/styles.css" />
+	<script defer type="module" src="./js/functions.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script defer type="module" src="./js/firebase.js"></script>
+	<script defer type="module" src="./js/usuario.js"></script>
+
 
 <body>
-    <div id="wrapper">
-        <header>
-            <h2 id="titulo">Quiz</h2>
-        </header>
-        <main id="contenedorMain">
+	<div id="wrapper">
+		<header>
+			<h2 id="titulo">Quiz</h2>
+		</header>
+		<main id="contenedorMain">
+			<div id="containerIniciarSesion" class="divRegistros">
+				<h1>Iniciar Sesion</h1>
+				<form action="" id="formularioIniciarSesion" class="formulariosRegistros">
+					<label for="usuario">Email</label>
+					<input type="email" required name="user" id="user" placeholder="Em@il" />
+					<label for="contrasenia">Contraseña</label>
+					<input type="password" required name="contrasenia" id="contrasenia" placeholder="Contraseña" />
+					<div id="cajabotonesIniciarSesion">
+						<button id="iniciarSesion" class="botonesIniciioSesion">
+							Iniciar Sesion
+						</button>
+						<button id="registrarse" class="botonesIniciioSesion">
+							Registrarse
+						</button>
+					</div>
+				</form>
+			</div>
+			<div id="containerRegistrarse" class="divRegistros">
+				<h1>Registrate</h1>
+				<form action="" id="formularioRegistro" class="formulariosRegistros">
+					<label for="nombre"></label>
+					<input type="text" required id="nombre" placeholder="Nombre" />
+					<label for="edad"></label>
+					<input type="number" required min="0" id="edad" placeholder="Edad" />
+					<label for="direccion"></label>
+					<input type="text" required id="direccion" placeholder="Direccion" />
+					<label for="email"></label>
+					<input type="email" required name="email" id="email" placeholder="Em@il" />
+					<label for="contraseniaRegistro"></label>
+					<input type="password" required id="contraseniaRegistro" placeholder="Contraseña" />
+					<label for="contraseniaRegistro2"></label>
+					<input type="password" required id="contraseniaRegistro2" placeholder="Repita contraseña" />
+					<button id="registrarUsuario" class="botonesIniciioSesion">
+						Registrate
+					</button>
+					<button id="volverRegistrar" class="botonesIniciioSesion">
+						Volver atras
+					</button>
+				</form>
+			</div>
 
-            <div id="opcionesLocalStorage">
-                <button id="botonVerHistorial">
-                    <p> Ver Historial</p>
-                    <img src="./img/historial.png" alt="Icono historial">
-                </button>
-                <button id="botonBorrarHistorial">
-                    <p>Borrar Historial</p>
-                    <img src="./img/delete.png" alt="Icono borrar historial">
-                </button>
+			<div id="opcionesLocalStorage">
+				<button id="botonVerHistorial">
+					<p>Historial</p>
+					<img class="imgBarraSuperior" src="./img/historial.png" alt="Icono historial" />
+				</button>
+				<button id="botonBorrarHistorial">
+					<p>Borrar Historial</p>
+					<img class="imgBarraSuperior" src="./img/delete.png" alt="Icono borrar historial" />
+				</button>
 
-            </div>
-            <section id="seccionCategorias">
-                <div id="contenedorTituloCategorias">
-                    <h2>Selecciona una de las categorias</h2>
-                </div>
-                <div id="contenedorArticulosCategorias">
-                    <article>
-                        <button id="botonCategoriaInformatica">
-                            <p>Informatica</p>
-                            <img src="./img/info.png" alt="logo informatica">
-                        </button>
-                    </article>
-                    <article>
-                        <button id="botonCategoriaCine">
-                            <p>Cine</p>
-                            <img src="./img/cine.png" alt="logo cine">
-                        </button>
-                    </article>
-                    <article>
-                        <button id="botonCategoriaMusica">
-                            <p>Musica</p>
-                            <img src="./img/musica.png" alt="logo musica">
-                        </button>
-                    </article>
-                    <article>
-                        <button id="botonCategoriaAleatoria">
-                            <p>Cualquier Tema!</p>
-                            <img src="./img/random.png" alt="logo aleatorio">
-                        </button>
-                    </article>
-                    <article>
-                        <button id="botonCategoriaFirebase">
-                            <p>Preguntas Desde Firebase</p>
-                            <img src="./img/firebase.png" alt="logo informatica">
-                        </button>
-                    </article>
-                </div>
-            </section>
-        </main>
-    </div>
+				<button>
+					<p id="usuarioFirebase"></p>
+					<img class="imgBarraSuperior" src="./img/user.png" alt="Icono usuario" />
+				</button>
+
+				<button id="botonCerrarSesion">
+					<p>Cerrar sesion</p>
+					<img title="Cerrar Sesion" class="imgBarraSuperior" src="./img/cerrarSesion.png"
+						alt="Icono Cerrar Sesion" />
+				</button>
+			</div>
+
+
+
+			<section id="seccionCategorias">
+				<div id="contenedorTituloCategorias">
+					<h2>Selecciona una de las categorias</h2>
+				</div>
+				<div id="contenedorArticulosCategorias">
+					<article>
+						<button id="botonCategoriaInformatica">
+							<p>Informatica</p>
+							<img src="./img/info.png" alt="logo informatica" />
+						</button>
+					</article>
+					<article>
+						<button id="botonCategoriaCine">
+							<p>Cine</p>
+							<img src="./img/cine.png" alt="logo cine" />
+						</button>
+					</article>
+					<article>
+						<button id="botonCategoriaMusica">
+							<p>Musica</p>
+							<img src="./img/musica.png" alt="logo musica" />
+						</button>
+					</article>
+					<article>
+						<button id="botonCategoriaAleatoria">
+							<p>Cualquier Tema!</p>
+							<img src="./img/random.png" alt="logo aleatorio" />
+						</button>
+					</article>
+					<article>
+						<button id="botonCategoriaFirebase">
+							<p>Preguntas Desde Firebase</p>
+							<img src="./img/firebase.png" alt="logo informatica" />
+						</button>
+					</article>
+				</div>
+			</section>
+		</main>
+		<div id="wrapperModal">
+			<div id="modal">
+				<div id="divTituloModal">
+					<h1>Datos de usuarios</h1> <img id="botonCerrarModal" src="./img/salirBoton.png" alt="">
+				</div>
+				<div class="divParrafo">
+					<p>Nombre</p>
+					<p id="modalNombre"></p>
+				</div>
+				<div class="divParrafo">
+					<p>Edad</p>
+					<p id="modalEdad"></p>
+				</div>
+				<div class="divParrafo">
+					<p>Direccion</p>
+					<p id="modalDireccion"></p>
+				</div>
+				<div class="divParrafo">
+					<p>Email</p>
+					<p id="modalEmail"></p>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

@@ -2,18 +2,26 @@
   margin: 0;
   padding: 0;
 }
+
 #wrapper {
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   font-family: sans-serif;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
+
 #titulo {
   background-color: #ff3cac;
-  background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
+  background-image: linear-gradient(
+    225deg,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
+  );
   box-shadow: 0px 0px 10px 0px black;
   color: white;
   font-size: 5rem;
@@ -21,40 +29,53 @@
   padding: 20px 0px 20px 0px;
   text-align: center;
 }
+
 #opcionesLocalStorage {
   width: 100%;
-  margin-top: 0px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: rgba(255, 255, 255, 0.568);
+  align-items: center;
+  padding: 7px 0px;
+
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+  margin-bottom: 100px;
 }
+
 #opcionesLocalStorage button {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  gap: 5px;
   justify-content: center;
-  margin-bottom: 7%;
-  margin-top: 0px;
-  padding: 5px 0px 5px;
-  width: 50%;
   background-color: white;
   border: none;
   cursor: pointer;
+  padding: 5px;
+  height: 35px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border: 1px solid gray;
 }
-#opcionesLocalStorage img {
+
+.imgBarraSuperior {
   width: 25px;
 }
+
 #opcionesLocalStorage button:hover {
-  background-color: rgb(235, 235, 235);
+  box-shadow: 0px 0px 5px black;
 }
+
 #contenedorMain {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
 }
+
 #contenedorTituloCategorias h2 {
   font-weight: 300;
   border-bottom: 1px solid lightgray;
@@ -71,6 +92,7 @@
   padding: 20px;
   width: 90%;
 }
+
 #contenedorArticulosCategorias {
   display: flex;
   flex-direction: row;
@@ -84,7 +106,7 @@
 #contenedorArticulosCategorias article {
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgb(203, 203, 203);
-  max-width: 250px;
+  max-width: 200px;
   min-width: 150px;
   width: 100%;
 }
@@ -96,13 +118,53 @@
   align-items: center;
   gap: 20px;
   width: 100%;
-
   padding: 10px;
   min-height: 300px;
-  font-size: 2.5rem;
+  font-size: 2rem;
   border: none;
   cursor: pointer;
   border-radius: 15px;
+}
+@media (max-width: 450px) {
+  #seccionCategorias {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  #contenedorArticulosCategorias {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
+
+  #contenedorArticulosCategorias article {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgb(203, 203, 203);
+    max-width: none;
+    width: 100%;
+  }
+
+  #contenedorArticulosCategorias article button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 10px;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+}
+#contenedorArticulosCategorias article button img {
+  width: 50px;
 }
 #contenedorArticulosCategorias article:hover {
   box-shadow: 0px 0px 20px rgb(0, 0, 0);
@@ -111,6 +173,7 @@
 #botonCategoriaInformatica {
   background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
 }
+
 #botonCategoriaCine {
   background-image: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
 }
@@ -122,10 +185,12 @@
 #botonCategoriaAleatoria {
   background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
 }
+
 #botonCategoriaFirebase {
   background-color: #fbab7e;
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
 }
+
 #intermediarioSeleccionCategoria {
   align-items: center;
   background-color: rgb(255, 255, 255);
@@ -146,6 +211,7 @@
   margin-top: 20px;
   text-align: center;
 }
+
 #intermediarioSeleccionCategoria button {
   background-color: #0093e9;
   background-image: linear-gradient(160deg, #bbbbbb 0%, #ffffff 100%);
@@ -161,13 +227,16 @@
   padding: 20px;
   text-align: center;
 }
+
 #intermediarioSeleccionCategoria button:hover {
   border: 1px solid white;
   box-shadow: 0px 0px 10px 0px rgb(106, 106, 106);
 }
+
 #intermediarioSeleccionCategoria button:last-child {
   padding: 7px;
 }
+
 #contenedorFalloFetch {
   background-color: rgb(255, 0, 0);
   padding: 30px;
@@ -182,6 +251,7 @@
   max-width: 450px;
   text-align: center;
 }
+
 #contenedorFalloFetch button {
   box-shadow: 0px 0px 5px 0px white;
   border-radius: 10px;
@@ -189,10 +259,12 @@
   background-color: white;
   border: none;
 }
+
 #contenedorFalloFetch button:hover {
   box-shadow: 0px 0px 10px 5px black;
   cursor: pointer;
 }
+
 #contadorPreguntas {
   background-color: white;
   border-radius: 20px;
@@ -207,6 +279,7 @@
   padding: 20px;
   width: 90%;
 }
+
 #anularPrueba {
   padding: 10px;
   border: none;
@@ -217,12 +290,14 @@
   border-radius: 10px;
   background-color: white;
 }
+
 #anularPrueba:hover {
   box-shadow: 0px 0px 5px black;
   cursor: pointer;
   background-color: rgb(0, 0, 0);
   color: white;
 }
+
 #contadorPreguntas p {
   align-items: center;
   background-color: rgb(240, 240, 240);
@@ -234,6 +309,7 @@
   padding: 5px;
   width: 30px;
 }
+
 .opcionRespuestas {
   background-color: rgb(237, 237, 237);
   border: none;
@@ -241,6 +317,7 @@
   margin: 20px;
   padding: 10px;
 }
+
 #seccionPreguntas {
   align-items: center;
   display: flex;
@@ -250,6 +327,7 @@
   padding: 20px;
   width: 90%;
 }
+
 #contenedorRespuestas {
   align-items: center;
   background-color: rgb(255, 255, 255);
@@ -274,22 +352,27 @@
   padding: 20px;
   width: 100%;
 }
+
 #contenedorRespuestas button {
   background-color: rgb(241, 241, 241);
   border-radius: 10px;
   max-width: 350px;
   min-width: 250px;
 }
+
 #contenedorRespuestas button:hover {
   box-shadow: 0px 0px 5px 0px gray;
   cursor: pointer;
 }
+
 .claseAcertado {
   box-shadow: 0px 0px 10px 0px green;
 }
+
 .claseFallado {
   box-shadow: 0px 0px 10px 0px red;
 }
+
 #contenedorResultado {
   align-items: center;
   background-color: white;
@@ -340,6 +423,7 @@
   text-align: center;
   justify-content: space-between;
 }
+
 #contenedorTitulo h2 {
   font-weight: 100;
 }
@@ -366,6 +450,7 @@
   padding: 10px 0px 10px;
   width: 90%;
 }
+
 .sesiones {
   align-items: center;
   box-shadow: 0px 0px 5px 0px lightgray;
@@ -377,6 +462,7 @@
   width: 100%;
   width: 90%;
 }
+
 .sesiones div {
   align-items: center;
   display: flex;
@@ -384,6 +470,7 @@
   justify-content: center;
   width: 100%;
 }
+
 #contenedorGrafica {
   box-shadow: 0px 0px 10px 2px lightgray;
   display: flex;
@@ -393,6 +480,7 @@
   padding: 10px;
   width: 90%;
 }
+
 #contenedorSesionesAnteriores img {
   width: 25px;
 }
@@ -402,6 +490,7 @@
   flex-direction: column;
   font-weight: 100;
 }
+
 #botonSalirLocalStorage {
   background-color: rgb(249, 249, 249);
   border: none;
@@ -418,4 +507,128 @@
   box-shadow: 0px 0px 3px 0px gray;
   border-radius: 100%;
   cursor: pointer;
+}
+
+.divRegistros {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  padding: 50px;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+  width: 30%;
+  min-width: 300px;
+  box-shadow: 0px 0px 10px 0px black;
+}
+
+.divRegistros h1 {
+  font-size: 2rem;
+  font-weight: 100;
+  border-bottom: 1px solid gray;
+  width: 80%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.formulariosRegistros {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.formulariosRegistros label {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  font-weight: 100;
+  color: white;
+}
+
+.formulariosRegistros input {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  border-bottom: 2px solid rgb(0, 140, 255);
+  font-size: 1.1rem;
+  font-weight: 100;
+  margin-top: 15px;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+
+#cajabotonesIniciarSesion {
+  display: flex;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.botonesIniciioSesion {
+  margin-top: 30px;
+  padding: 5px;
+  width: 100%;
+  border: none;
+  background-color: #ffd04f;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px black;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.botonesIniciioSesion:hover {
+  border: 1px solid black;
+  cursor: pointer;
+}
+#wrapperModal {
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.689);
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#modal {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
+  padding: 20px;
+  width: 30%;
+  border-radius: 10px;
+  min-width: 300px;
+  gap: 10px;
+  z-index: 100;
+  top: 0;
+  margin: auto;
+}
+#divTituloModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#divTituloModal img {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(253, 132, 132);
+  padding: 5px;
+  border-radius: 50%;
+}
+#divTituloModal img:hover {
+  box-shadow: 0px 0px 5px gray;
+  cursor: pointer;
+  background-color: rgb(231, 231, 231);
+}
+#divTituloModal h1 {
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+.divParrafo {
+  border-bottom: 1px solid rgb(206, 206, 206);
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: space-between;
 }
