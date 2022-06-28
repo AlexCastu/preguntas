@@ -26,13 +26,19 @@
 					<input type="email" required name="user" id="user" placeholder="Em@il" />
 					<label for="contrasenia">Contraseña</label>
 					<input type="password" required name="contrasenia" id="contrasenia" placeholder="Contraseña" />
+					<p id="parrafoErrorDatos" ></p>
 					<div id="cajabotonesIniciarSesion">
-						<button id="iniciarSesion" class="botonesIniciioSesion">
-							Iniciar Sesion
-						</button>
-						<button id="registrarse" class="botonesIniciioSesion">
-							Registrarse
-						</button>
+						<div class="contenedorBotonoesIniciarSesion">
+							<button id="iniciarSesion" class="botonesIniciioSesion">
+								Iniciar Sesion
+							</button>
+							<p>OR</p>
+							<button id="registrarse" class="botonesIniciioSesion">
+								Registrarse
+							</button>
+						</div>
+
+
 					</div>
 				</form>
 			</div>
@@ -51,12 +57,13 @@
 					<input type="password" required id="contraseniaRegistro" placeholder="Contraseña" />
 					<label for="contraseniaRegistro2"></label>
 					<input type="password" required id="contraseniaRegistro2" placeholder="Repita contraseña" />
-					<button id="registrarUsuario" class="botonesIniciioSesion">
-						Registrate
+					<div class="contenedorBotonoesIniciarSesion">
+						<button id="registrarUsuario" class="botonesIniciioSesion">
+						¡ Registrate !
 					</button>
 					<button id="volverRegistrar" class="botonesIniciioSesion">
 						Volver atras
-					</button>
+					</button></div>
 				</form>
 			</div>
 

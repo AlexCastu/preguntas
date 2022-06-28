@@ -1,8 +1,8 @@
-import { iniciarFireBase } from './firebase.js';
+import { iniciarFireBase, cerrarSesionFirebase } from './firebase.js';
 import { mostrarDatosUserFirebase } from './usuario.js';
-import { escribirPuntuacion,borrarHistorial } from './puntuaciones.js';
+import { escribirPuntuacion, borrarHistorial } from './puntuaciones.js';
 import { mostrarPuntuacionesUser } from './mostrarPuntuaciones.js';
-import { mostrarUsariosFirebase } from "./mostrarDatosUser.js";
+import { mostrarUsariosFirebase } from './mostrarDatosUser.js';
 let cat;
 window.addEventListener('load', () => {
 	if (!localStorage.Acertados) {
@@ -67,13 +67,18 @@ window.addEventListener('load', () => {
 	document
 		.getElementById('botonBorrarHistorial')
 		.addEventListener('click', () => {
-			borrarHistorial()
+			borrarHistorial();
 		});
-		document.getElementById("usuarioFirebase").addEventListener('click',()=>{
-			mostrarUsariosFirebase()
-		});
+	document.getElementById('usuarioFirebase').addEventListener('click', () => {
+		mostrarUsariosFirebase();
+	});
 	document.getElementById('botonCerrarSesion').addEventListener('click', () => {
 		localStorage.removeItem('user');
+		cerrarSesionFirebase();
+		location.reload();
+	});
+	document.getElementById('volverRegistrar').addEventListener('click', (e) => {
+		e.preventDefault();
 		location.reload();
 	});
 });
@@ -354,7 +359,7 @@ const guardarDatosLocalStorage = () => {
 const guardarFecha = () => {
 	let fecha;
 	let date = new Date();
-	fecha = `${date.getDate()} / ${date.getMonth() + 1} / ${date.getFullYear()}`;
+	fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 	return fecha;
 };
 const guardarHoras = () => {
