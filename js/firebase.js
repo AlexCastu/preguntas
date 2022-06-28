@@ -40,9 +40,9 @@ window.addEventListener('load', () => {
 						'0px 0px 10px rgb(16, 146, 59)';
 					setTimeout(() => {
 						document.getElementById("containerIniciarSesion").style.display =
-              "none";
-            document.getElementById("containerRegistrarse").style.display =
               "flex";
+            document.getElementById("containerRegistrarse").style.display =
+              "none";
 					}, 1000);
 				} else {
 					document.getElementById('registrarUsuario').style.boxShadow =
