@@ -6,6 +6,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 const mostrarUsariosFirebase = () => {
   iniciarFireBase();
+
 };
 function iniciarFireBase() {
   const app = initFireBase();
@@ -26,5 +27,13 @@ const getData = (app) => {
          document.getElementById("wrapperModal").style.display = "none";
     });
   });
+  
+   onValue(refPreguntas, (snapshot) => {
+     const data = snapshot.val();
+     console.log(data.nombre);
+     document.getElementById("usuarioFirebase").innerText = data.nombre;
+   });
 };
+
+
 export { mostrarUsariosFirebase };

@@ -1,5 +1,4 @@
 import { iniciarFireBase, cerrarSesionFirebase } from './firebase.js';
-import { mostrarDatosUserFirebase } from './usuario.js';
 import { escribirPuntuacion, borrarHistorial } from './puntuaciones.js';
 import { mostrarPuntuacionesUser } from './mostrarPuntuaciones.js';
 import { mostrarUsariosFirebase } from './mostrarDatosUser.js';
@@ -22,7 +21,7 @@ window.addEventListener('load', () => {
 		contenedorRegistro.style.display = 'none';
 		opcionesLocalStorage.style.display = 'flex';
 		contenedorCategorias.style.display = 'flex';
-		mostrarDatosUserFirebase();
+	
 	} else {
 		contenedorRegistro.style.display = 'none';
 		opcionesLocalStorage.style.display = 'none';
@@ -69,7 +68,7 @@ window.addEventListener('load', () => {
 		.addEventListener('click', () => {
 			borrarHistorial();
 		});
-	document.getElementById('usuarioFirebase').addEventListener('click', () => {
+	document.getElementById('botonUsuario').addEventListener('click', () => {
 		mostrarUsariosFirebase();
 	});
 	document.getElementById('botonCerrarSesion').addEventListener('click', () => {
