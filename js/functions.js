@@ -79,7 +79,8 @@ window.addEventListener('load', () => {
 	});
 	document.getElementById('volverRegistrar').addEventListener('click', (e) => {
 		e.preventDefault();
-		location.reload();
+		document.getElementById("containerIniciarSesion").style.display = "flex";
+    document.getElementById("containerRegistrarse").style.display = "none";
 	});
 });
 const seleccionarCategoria = (categoria) => {

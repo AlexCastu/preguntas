@@ -39,7 +39,10 @@ window.addEventListener('load', () => {
 					document.getElementById('registrarUsuario').style.boxShadow =
 						'0px 0px 10px rgb(16, 146, 59)';
 					setTimeout(() => {
-						location.reload();
+						document.getElementById("containerIniciarSesion").style.display =
+              "none";
+            document.getElementById("containerRegistrarse").style.display =
+              "flex";
 					}, 1000);
 				} else {
 					document.getElementById('registrarUsuario').style.boxShadow =
@@ -69,7 +72,6 @@ function loginUser() {
 				document.getElementById('containerIniciarSesion').style.display =
 					'none';
 				localStorage.setItem('user', response.user.uid);
-				location.reload();
 			})
 			.catch((err) => {
 				console.log(err);
